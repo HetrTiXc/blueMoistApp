@@ -7,12 +7,28 @@
 //
 
 #import "AppDelegate.h"
+#import "flower.h"
+#import "MasterViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    flower *rose = [flower alloc];
+    flower *tulip = [flower alloc];
+    flower *sunflower = [flower alloc];
+    rose = [rose initWithName:@"Rose" thumbImage:[UIImage imageNamed:@"roseThumbImage"] fullImage:[UIImage imageNamed:@"roseImage"]];
+    tulip = [tulip initWithName:@"Tulip" thumbImage:[UIImage imageNamed:@"tulipThumbImage"] fullImage:[UIImage imageNamed:@"tulipImage"]];
+    sunflower = [sunflower initWithName:@"Sunflower" thumbImage:[UIImage imageNamed:@"sunflowerThumbImage"] fullImage: [UIImage imageNamed:@"sunflowerImage"]];
+    sunflower.userDescription = @"jflsjdflsdflkjsdfkj";
+    
+    
+    NSMutableArray *flowersToAddToList = [NSMutableArray arrayWithObjects:rose, tulip, sunflower, nil];
+    
+    UINavigationController *navController = (UINavigationController *) self.window.rootViewController;
+    MasterViewController *masterController = [navController.viewControllers objectAtIndex:0];
+    masterController.flowerList = flowersToAddToList;
     return YES;
 }
 							
@@ -26,6 +42,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

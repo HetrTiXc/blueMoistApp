@@ -10,4 +10,9 @@
 
 @interface MasterViewController : UITableViewController
 
+@property (strong) NSMutableArray *flowerList;
+
+- (NSString *) saveFilePath;
+- (void)applicationDidEnterBackground:(UIApplication *)application;
+
 @end

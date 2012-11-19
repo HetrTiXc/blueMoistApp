@@ -7,8 +7,8 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
+#import "flower.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -16,6 +16,8 @@
 @end
 
 @implementation MasterViewController
+
+@synthesize flowerList = _flowerList;
 
 - (void)awakeFromNib
 {
@@ -25,11 +27,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Load last used list over flowers
+    NSString *savePath = [self saveFilePath];
+	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savePath];
+	if (fileExists)
+	{
+		//NSArray *values = [[NSArray alloc] initWithContentsOfFile:savePath];
+        //_flowerList = [values copy];
+		//Question.text = [values objectAtIndex:0];
+		//Answer.text = [values objectAtIndex:1];
+	}
+    
+    //Call save-on-quit function
+    UIApplication *flowerApp = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidEnterBackground:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:flowerApp];
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.title = @"Vanne Blomstr";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,15 +82,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return _flowerList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyFlowerCell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    flower *oneFlowerInTheList = [self.flowerList objectAtIndex:indexPath.row];
+    cell.textLabel.text = oneFlowerInTheList.name;
+    cell.imageView.image = oneFlowerInTheList.thumbImage;
     return cell;
 }
 
@@ -78,7 +104,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
+        [_flowerList removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -107,7 +133,35 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
+        DetailViewController *detailController = segue.destinationViewController;
+        flower *oneFlowerToShow = [self.flowerList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        detailController.detailFlower = oneFlowerToShow;
     }
 }
 
+- (void) addTapped:(id)sender {
+    flower *newFlower = [[flower alloc] initWithName:@"New Plant" thumbImage:[UIImage imageNamed:@"dummyflowerThumb"] fullImage:[UIImage imageNamed:@"dummyFlower"]];
+    [_flowerList addObject:newFlower];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_flowerList.count-1 inSection:0];
+    NSArray *indexPaths = [NSArray arrayWithObjects:indexPath, nil];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:YES];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self performSegueWithIdentifier:@"showDetail" sender:self];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+- (NSString *) saveFilePath
+{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[path objectAtIndex:0] stringByAppendingPathComponent:@"/saveFile.plist"];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	NSArray *values = [[NSArray alloc] initWithArray:_flowerList];
+	[values writeToFile:[self saveFilePath] atomically:YES];
+}
 @end
