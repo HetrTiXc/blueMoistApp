@@ -44,11 +44,6 @@
     return self;    
 }
 
-- (void)dealloc
-{
-
-}
-
 #pragma mark - Private Methods
 - (void)fadeIn
 {
