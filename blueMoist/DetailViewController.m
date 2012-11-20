@@ -64,10 +64,6 @@
                  [NSDictionary dictionaryWithObjectsAndKeys:@"Twitter",@"text", nil],
                  [NSDictionary dictionaryWithObjectsAndKeys:@"Tumblr",@"text", nil],
                  [NSDictionary dictionaryWithObjectsAndKeys:@"Google+",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"LinkedIn",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Pinterest",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Dribbble",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"deviantArt",@"text", nil],
                  nil];
     
     [self configureView];
@@ -98,6 +94,12 @@
     lplv.delegate = self;
     [lplv showInView:self.view animated:YES];
 }
+#pragma mark - LeveyPopListView delegates
+- (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
+{
+    
+}
+
 - (void)leveyPopListViewDidCancel
 {
     //_infoLabel.text = @"You have cancelled";
