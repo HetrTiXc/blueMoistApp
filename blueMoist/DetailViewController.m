@@ -97,7 +97,7 @@
 #pragma mark - LeveyPopListView delegates
 - (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
 {
-    
+    //Bind the flower to the selected BLE sensor
 }
 
 - (void)leveyPopListViewDidCancel
