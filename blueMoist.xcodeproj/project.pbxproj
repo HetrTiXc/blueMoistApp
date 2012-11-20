@@ -65,8 +65,8 @@
 		81F1E0561652A56200F49E4E /* dummyFlower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyFlower.png; sourceTree = "<group>"; };
 		81F1E0571652A56200F49E4E /* dummyFlowerThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dummyFlowerThumb.png; sourceTree = "<group>"; };
 		81F1E05A16569F0F00F49E4E /* saveFile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = saveFile.plist; sourceTree = "<group>"; };
-		81F1E05C165A3A6100F49E4E /* roselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roselogo.png; sourceTree = "<group>"; };
-		81F1E05E165A3BE900F49E4E /* roselogoRet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roselogoRet.png; sourceTree = "<group>"; };
+		81F1E05C165A3A6100F49E4E /* roselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roselogo.png; path = ../roselogo.png; sourceTree = "<group>"; };
+		81F1E05E165A3BE900F49E4E /* roselogoRet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roselogoRet.png; path = ../roselogoRet.png; sourceTree = "<group>"; };
 		81F1E065165A576A00F49E4E /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
 		81F1E066165A576A00F49E4E /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
 		81F1E067165A576A00F49E4E /* LeveyPopListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListViewCell.h; sourceTree = "<group>"; };
@@ -90,8 +90,6 @@
 		81F1E00F164D693700F49E4E = {
 			isa = PBXGroup;
 			children = (
-				81F1E05E165A3BE900F49E4E /* roselogoRet.png */,
-				81F1E05C165A3A6100F49E4E /* roselogo.png */,
 				81F1E024164D693700F49E4E /* blueMoist */,
 				81F1E01D164D693700F49E4E /* Frameworks */,
 				81F1E01B164D693700F49E4E /* Products */,
@@ -169,6 +167,8 @@
 		81F1E0491651072C00F49E4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81F1E05E165A3BE900F49E4E /* roselogoRet.png */,
+				81F1E05C165A3A6100F49E4E /* roselogo.png */,
 				81F1E0561652A56200F49E4E /* dummyFlower.png */,
 				81F1E0571652A56200F49E4E /* dummyFlowerThumb.png */,
 				81F1E04A165107A200F49E4E /* roseImage.png */,
