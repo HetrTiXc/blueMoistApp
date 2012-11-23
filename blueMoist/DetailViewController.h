@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "flower.h"
 #import "LeveyPopListView.h"
+#import "BleDiscovery.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "BleFlowerService.h"
 
 
-@interface DetailViewController : UIViewController <UITextFieldDelegate, LeveyPopListViewDelegate>
+@interface DetailViewController : UIViewController <UITextFieldDelegate, LeveyPopListViewDelegate, BleDelegate>
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) flower *detailFlower;

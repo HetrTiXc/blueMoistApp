@@ -9,6 +9,7 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "flower.h"
+#import "BleDiscovery.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
@@ -26,7 +27,9 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
     
     //Load last used list over flowers
     NSString *savePath = [self saveFilePath];

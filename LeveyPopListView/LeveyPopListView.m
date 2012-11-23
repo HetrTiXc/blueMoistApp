@@ -18,6 +18,7 @@
 - (void)fadeOut;
 @end
 
+
 @implementation LeveyPopListView
 @synthesize delegate;
 #pragma mark - initialization & cleaning up

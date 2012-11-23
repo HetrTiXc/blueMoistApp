@@ -9,7 +9,8 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 
-@interface DetailViewController ()
+
+@interface DetailViewController () <BleDelegate>
 - (void)configureView;
 @end
 
@@ -48,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[BleDiscovery sharedInstance] setBleDelegate:self];
 	// Do any additional setup after loading the view, typically from a nib.
     //NSString *teststreng = [[NSString alloc] initWithFormat:@"TESTSTRENG FTW"];
     //self.labelNumUno.text = teststreng;
@@ -59,12 +61,7 @@
     self.batteryLevelProgress.progress = 0.88;
     self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.batteryLevelProgress.progress*100)];
     
-    _options = [NSArray arrayWithObjects:
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Facebook",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Twitter",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Tumblr",@"text", nil],
-                 [NSDictionary dictionaryWithObjectsAndKeys:@"Google+",@"text", nil],
-                 nil];
+   // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
     [self configureView];
 }
@@ -86,11 +83,13 @@
     self.detailFlower.name = self.flowerNameTextBox.text;
 }
 - (void) infoTapped:(id) sender{
-    [self showListView];
+    [[BleDiscovery sharedInstance] startScanningForUUIDString:humidityUUID];
+    
 }
+LeveyPopListView *lplv;
 - (void)showListView
 {
-    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Select BLE device to connect" options:_options];
+    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Found BlueMoist..." options:[[BleDiscovery sharedInstance] freePeripheralName]];
     lplv.delegate = self;
     [lplv showInView:self.view animated:YES];
 }
@@ -98,10 +97,32 @@
 - (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
 {
     //Bind the flower to the selected BLE sensor
+    [self connectFunc];
 }
 
 - (void)leveyPopListViewDidCancel
 {
     //_infoLabel.text = @"You have cancelled";
 }
+
+//BleDelegate functions, called from BleDiscovery class
+- (void) BleDiscoveryDidRefresh
+{
+    NSLog(@"BleDiscoveryDidRefresh");
+}
+- (void) foundPeripheral
+{
+    NSLog(@"foundPeripheral");
+    [self showListView];
+}
+
+- (void) connectFunc {
+    CBPeripheral *per;
+    if([[BleDiscovery sharedInstance] freePeripherals])
+    {
+        per = [[BleDiscovery sharedInstance] freePeripherals][0];
+        [[BleDiscovery sharedInstance] connectPeripheral:per];
+    }
+}
+
 @end

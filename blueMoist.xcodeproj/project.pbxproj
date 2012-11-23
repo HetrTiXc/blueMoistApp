@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F934C8A165FCA31005A39EA /* BleDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F934C87165FCA31005A39EA /* BleDiscovery.m */; };
+		3F934C8B165FCA31005A39EA /* BleFlowerService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F934C89165FCA31005A39EA /* BleFlowerService.m */; };
+		3F934C8F165FD740005A39EA /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F934C8E165FD740005A39EA /* CoreBluetooth.framework */; };
 		81F1E01F164D693700F49E4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F1E01E164D693700F49E4E /* UIKit.framework */; };
 		81F1E021164D693700F49E4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F1E020164D693700F49E4E /* Foundation.framework */; };
 		81F1E023164D693700F49E4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F1E022164D693700F49E4E /* CoreGraphics.framework */; };
@@ -36,6 +39,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F934C86165FCA31005A39EA /* BleDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleDiscovery.h; path = ../../../BlueFlower/BleDiscovery.h; sourceTree = "<group>"; };
+		3F934C87165FCA31005A39EA /* BleDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleDiscovery.m; path = ../../../BlueFlower/BleDiscovery.m; sourceTree = "<group>"; };
+		3F934C88165FCA31005A39EA /* BleFlowerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BleFlowerService.h; path = ../../../BlueFlower/BleFlowerService.h; sourceTree = "<group>"; };
+		3F934C89165FCA31005A39EA /* BleFlowerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BleFlowerService.m; path = ../../../BlueFlower/BleFlowerService.m; sourceTree = "<group>"; };
+		3F934C8E165FD740005A39EA /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		81F1E01A164D693700F49E4E /* blueMoist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blueMoist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81F1E01E164D693700F49E4E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81F1E020164D693700F49E4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F934C8F165FD740005A39EA /* CoreBluetooth.framework in Frameworks */,
 				81F1E01F164D693700F49E4E /* UIKit.framework in Frameworks */,
 				81F1E021164D693700F49E4E /* Foundation.framework in Frameworks */,
 				81F1E023164D693700F49E4E /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F934C8C165FCA54005A39EA /* Ble */ = {
+			isa = PBXGroup;
+			children = (
+				3F934C86165FCA31005A39EA /* BleDiscovery.h */,
+				3F934C87165FCA31005A39EA /* BleDiscovery.m */,
+				3F934C88165FCA31005A39EA /* BleFlowerService.h */,
+				3F934C89165FCA31005A39EA /* BleFlowerService.m */,
+			);
+			name = Ble;
+			sourceTree = "<group>";
+		};
 		81F1E00F164D693700F49E4E = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +127,7 @@
 		81F1E01D164D693700F49E4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F934C8E165FD740005A39EA /* CoreBluetooth.framework */,
 				81F1E01E164D693700F49E4E /* UIKit.framework */,
 				81F1E020164D693700F49E4E /* Foundation.framework */,
 				81F1E022164D693700F49E4E /* CoreGraphics.framework */,
@@ -117,6 +138,7 @@
 		81F1E024164D693700F49E4E /* blueMoist */ = {
 			isa = PBXGroup;
 			children = (
+				3F934C8C165FCA54005A39EA /* Ble */,
 				81F1E064165A576900F49E4E /* LeveyPopListView */,
 				81F1E0491651072C00F49E4E /* Resources */,
 				81F1E0481650F78000F49E4E /* Model */,
@@ -278,6 +300,8 @@
 				81F1E046164D698C00F49E4E /* flower.m in Sources */,
 				81F1E069165A576A00F49E4E /* LeveyPopListView.m in Sources */,
 				81F1E06A165A576A00F49E4E /* LeveyPopListViewCell.m in Sources */,
+				3F934C8A165FCA31005A39EA /* BleDiscovery.m in Sources */,
+				3F934C8B165FCA31005A39EA /* BleFlowerService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +381,7 @@
 		81F1E042164D693700F49E4E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "blueMoist/blueMoist-Prefix.pch";
 				INFOPLIST_FILE = "blueMoist/blueMoist-Info.plist";
@@ -369,6 +394,7 @@
 		81F1E043164D693700F49E4E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "blueMoist/blueMoist-Prefix.pch";
 				INFOPLIST_FILE = "blueMoist/blueMoist-Info.plist";

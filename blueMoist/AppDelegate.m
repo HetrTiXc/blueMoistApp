@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "flower.h"
 #import "MasterViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "BleDiscovery.h"
+#import "BleFlowerService.h"
 
 @implementation AppDelegate
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BleFlowerService.h"
 
 @interface flower : NSObject
 
@@ -17,6 +18,7 @@
 @property (strong) NSString *appDescription;
 @property (assign) float moistureLevel;
 @property (assign) float batteryLevel;
+@property (assign) BleFlowerService *flowerService;
 
 - (id) initWithName:(NSString *) name thumbImage:(UIImage *) thumbImage fullImage:(UIImage *) fullImage;
 
