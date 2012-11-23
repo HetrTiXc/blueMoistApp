@@ -10,6 +10,8 @@
 
 @implementation flower
 
+//Git test kommentar
+
 @synthesize name = _name;
 @synthesize thumbImage = _thumbImage;
 @synthesize userDescription = _userDescription;
