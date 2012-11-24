@@ -54,7 +54,7 @@
     //NSString *teststreng = [[NSString alloc] initWithFormat:@"TESTSTRENG FTW"];
     //self.labelNumUno.text = teststreng;
     
-    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(infoTapped:)];
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
     self.navigationItem.rightBarButtonItem = infoButton;
     self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.waterLevelProgress.progress*100)];
