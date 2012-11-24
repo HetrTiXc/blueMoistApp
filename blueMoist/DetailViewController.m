@@ -55,7 +55,7 @@
     //self.labelNumUno.text = teststreng;
     
     if ([self.detailFlower.flowerService.peripheral isConnected]) {
-        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
+        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
         self.navigationItem.rightBarButtonItem = refreshButton;
     } else {
         UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
@@ -164,7 +164,7 @@ LeveyPopListView *lplv;
 
 -(void) changeConnectButton
 {
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
     [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
 }
 
