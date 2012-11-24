@@ -55,7 +55,7 @@
     //self.labelNumUno.text = teststreng;
     
     if ([self.detailFlower.flowerService.peripheral isConnected]) {
-        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
+        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
         self.navigationItem.rightBarButtonItem = refreshButton;
     } else {
         UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
@@ -95,26 +95,6 @@
     [[BleDiscovery sharedInstance] startScanningForUUIDString:humidityUUID];
     
 }
-LeveyPopListView *lplv;
-- (void)showListView
-{
-    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Found BlueMoist..." options:[[BleDiscovery sharedInstance] freePeripheralName]];
-    lplv.delegate = self;
-    [lplv showInView:self.view animated:YES];
-}
-
-#pragma mark - LeveyPopListView delegates
-- (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
-{
-    //Bind the flower to the selected BLE sensor
-
-}
-
-- (void)leveyPopListViewDidCancel
-{
-    //_infoLabel.text = @"You have cancelled";
-}
-
 
 //BleDelegate functions, called from BleDiscovery class
 - (void) BleDiscoveryDidRefresh
@@ -166,7 +146,7 @@ LeveyPopListView *lplv;
 
 -(void) changeConnectButton
 {
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
     [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
 }
 
