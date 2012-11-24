@@ -70,7 +70,7 @@
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
     
-    [self updateBleFlowerServiceCharacteristicValues];
+    //[self updateBleFlowerServiceCharacteristicValues];
     
     [self configureView];
 }
@@ -150,6 +150,7 @@ LeveyPopListView *lplv;
 //Requests update for characteristic values from the peripheral connected to the flower, called after the connection is set up, on each load of detailedView, and from "update" button
 - (void) updateBleFlowerServiceCharacteristicValues
 {
+    NSLog(@"updateBleFlowerServiceCharacteristicValues");
     if([self.detailFlower.flowerService.peripheral isConnected])
     {
         [self.detailFlower.flowerService updateValue];
@@ -159,7 +160,8 @@ LeveyPopListView *lplv;
 - (void) setBleFlowerServiceCharacteristicValue:(float)value
 {
     NSLog(@"setBleFlowerServiceCharacteristicValue");
-    NSLog(@"%f",value);
+    NSLog(@"%f", value);
+    self.waterLevelProgress.progress = value;
 }
 
 -(void) changeConnectButton

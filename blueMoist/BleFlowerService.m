@@ -11,7 +11,7 @@
 
 NSString *humidityUUID = @"2012";
 NSString *humidityCharacteristicUUID = @"2a19";
-NSString *batteryUUID = @"XXXX";
+NSString *batteryUUID = @"180f";
 
 @interface BleFlowerService() <CBPeripheralDelegate> {
 @private
@@ -154,11 +154,15 @@ NSString *batteryUUID = @"XXXX";
     hexValueStr = [hexValueStr substringFromIndex:1];
     hexValueStr = [hexValueStr substringToIndex:[hexValueStr length] - 1];
     NSLog(@"%@",hexValueStr);
-    unsigned int *floatValue = NULL;
+    unsigned int value;
     NSScanner *scanner = [NSScanner scannerWithString:hexValueStr];
-    [scanner scanHexInt:floatValue];
-    NSLog(@"%u",floatValue);
+    [scanner scanHexInt:&value];
+    NSLog(@"%u",value);
+    float flValue = (float) value;
     
-   }
+    flValue = flValue/120;
+    NSLog(@"%f",flValue);
+    [BleServiceDelegate setBleFlowerServiceCharacteristicValue:flValue];
+}
 
 @end
