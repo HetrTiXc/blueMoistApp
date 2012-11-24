@@ -60,7 +60,7 @@
     self.waterLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.waterLevelProgress.progress*100)];
     self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
     self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.batteryLevelProgress.progress*100)];
-    
+    //self.navigationItem.rightBarButtonItem = refreshButton;
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
     
@@ -155,6 +155,11 @@ LeveyPopListView *lplv;
     NSLog(@"%f",value);
 }
 
+-(void) changeConnectButton
+{
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:nil];
+    [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
+}
 
 
 
