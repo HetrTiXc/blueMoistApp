@@ -14,6 +14,7 @@
 - (void) BleDiscoveryDidRefresh;
 - (void) foundPeripheral:(CBPeripheral *)peripheral;
 - (void) startBleFlowerService;
+- (void) changeConnectButton;
 @end
 
 @interface BleDiscovery : NSObject

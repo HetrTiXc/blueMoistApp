@@ -137,6 +137,7 @@
     NSLog(@"didConnectPeripheral");
     
     [BleDelegate startBleFlowerService];
+    [BleDelegate changeConnectButton];
 }
 
 //#####################################################################################################
