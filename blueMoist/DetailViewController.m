@@ -122,9 +122,10 @@ LeveyPopListView *lplv;
     NSLog(@"foundPeripheral");
     //[self showListView];
     BleFlowerService *service	= nil;
-    [service setBleServiceDelegate:self];
+    
     service = [[BleFlowerService alloc] initWithPeripheral:peripheral];
     self.detailFlower.flowerService = service;
+    [self.detailFlower.flowerService setBleServiceDelegate:self];
     
     [[BleDiscovery sharedInstance] connectPeripheral:self.detailFlower.flowerService.peripheral];
     

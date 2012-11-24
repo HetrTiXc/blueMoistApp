@@ -27,7 +27,7 @@ NSString *batteryUUID = @"XXXX";
 @implementation BleFlowerService
 
 @synthesize peripheral = servicePeripheral;
-@synthesize bleServiceDelegate;
+@synthesize BleServiceDelegate;
 
 //#####################################################################################################
 
@@ -150,10 +150,11 @@ NSString *batteryUUID = @"XXXX";
 - (void) convertValueFromHexToFloat:(NSData*) hexValue
 {
     NSLog(@"convertValueFromHexToFloat");
-    float floatValue;
-    [hexValue getBytes:&floatValue length:sizeof(float)];
+    NSString *hexValueStr = hexValue.description;
+    hexValueStr = [hexValueStr substringFromIndex:1];
+    hexValueStr = [hexValueStr substringToIndex:[hexValueStr length] - 1];
+    NSLog(@"%@",hexValueStr);
     
-    [bleServiceDelegate setBleFlowerServiceCharacteristicValue:floatValue];
-}
+   }
 
 @end

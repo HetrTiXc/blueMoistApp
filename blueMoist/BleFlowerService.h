@@ -24,6 +24,6 @@ extern NSString *batteryUUID;
 - (void) updateValue;
 
 @property (readonly) CBPeripheral *peripheral;
-@property (nonatomic, assign) id <BleServiceDelegate> bleServiceDelegate;
+@property (nonatomic, assign) id <BleServiceDelegate> BleServiceDelegate;
 
 @end
