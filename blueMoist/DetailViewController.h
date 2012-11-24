@@ -14,7 +14,7 @@
 #import "BleFlowerService.h"
 
 
-@interface DetailViewController : UIViewController <UITextFieldDelegate, LeveyPopListViewDelegate, BleDelegate>
+@interface DetailViewController : UIViewController <UITextFieldDelegate, LeveyPopListViewDelegate, BleDelegate, BleServiceDelegate>
 
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) flower *detailFlower;

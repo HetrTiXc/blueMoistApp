@@ -21,7 +21,8 @@
         self.name = name;
         self.thumbImage = thumbImage;
         self.fullImage = fullImage;
-        self.moistureLevel = 1;
+        self.moistureLevel = 0.5;
+        self.batteryLevel = 0.5;
     }
     return self;
 }

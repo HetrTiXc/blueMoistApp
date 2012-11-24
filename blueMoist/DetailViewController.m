@@ -10,7 +10,7 @@
 #import "MasterViewController.h"
 
 
-@interface DetailViewController () <BleDelegate>
+@interface DetailViewController () <BleDelegate, BleServiceDelegate>
 - (void)configureView;
 @end
 
@@ -56,12 +56,15 @@
     
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(infoTapped:)];
     self.navigationItem.rightBarButtonItem = infoButton;
-    self.waterLevelProgress.progress = 0.23;
+    self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.waterLevelProgress.progress*100)];
-    self.batteryLevelProgress.progress = 0.88;
+    self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
     self.batteryLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.batteryLevelProgress.progress*100)];
     
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
+    
+    
+    [self updateBleFlowerServiceCharacteristicValues];
     
     [self configureView];
 }
@@ -93,11 +96,12 @@ LeveyPopListView *lplv;
     lplv.delegate = self;
     [lplv showInView:self.view animated:YES];
 }
+
 #pragma mark - LeveyPopListView delegates
 - (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
 {
     //Bind the flower to the selected BLE sensor
-    [self connectFunc];
+
 }
 
 - (void)leveyPopListViewDidCancel
@@ -105,24 +109,53 @@ LeveyPopListView *lplv;
     //_infoLabel.text = @"You have cancelled";
 }
 
+
 //BleDelegate functions, called from BleDiscovery class
 - (void) BleDiscoveryDidRefresh
 {
     NSLog(@"BleDiscoveryDidRefresh");
 }
-- (void) foundPeripheral
+
+//Made this function so we can choose to initiate the connection with a button, if we want...? if not, all can be done in the BleDiscovery
+- (void) foundPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"foundPeripheral");
-    [self showListView];
+    //[self showListView];
+    BleFlowerService *service	= nil;
+    [service setBleServiceDelegate:self];
+    service = [[BleFlowerService alloc] initWithPeripheral:peripheral];
+    self.detailFlower.flowerService = service;
+    
+    [[BleDiscovery sharedInstance] connectPeripheral:self.detailFlower.flowerService.peripheral];
+    
 }
 
-- (void) connectFunc {
-    CBPeripheral *per;
-    if([[BleDiscovery sharedInstance] freePeripherals])
+
+- (void) startBleFlowerService
+{
+    NSLog(@"createBleFlowerService");
+    
+    //Start the service
+	[self.detailFlower.flowerService start];
+
+}
+
+//Requests update for characteristic values from the peripheral connected to the flower, called after the connection is set up, on each load of detailedView, and from "update" button
+- (void) updateBleFlowerServiceCharacteristicValues
+{
+    if([self.detailFlower.flowerService.peripheral isConnected])
     {
-        per = [[BleDiscovery sharedInstance] freePeripherals][0];
-        [[BleDiscovery sharedInstance] connectPeripheral:per];
+        [self.detailFlower.flowerService updateValue];
     }
 }
+
+- (void) setBleFlowerServiceCharacteristicValue:(float)value
+{
+    NSLog(@"setBleFlowerServiceCharacteristicValue");
+    NSLog(@"%f",value);
+}
+
+
+
 
 @end
