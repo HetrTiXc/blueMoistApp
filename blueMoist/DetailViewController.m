@@ -95,26 +95,6 @@
     [[BleDiscovery sharedInstance] startScanningForUUIDString:humidityUUID];
     
 }
-LeveyPopListView *lplv;
-- (void)showListView
-{
-    LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Found BlueMoist..." options:[[BleDiscovery sharedInstance] freePeripheralName]];
-    lplv.delegate = self;
-    [lplv showInView:self.view animated:YES];
-}
-
-#pragma mark - LeveyPopListView delegates
-- (void)leveyPopListView:(LeveyPopListView *)popListView didSelectedIndex:(NSInteger)anIndex
-{
-    //Bind the flower to the selected BLE sensor
-
-}
-
-- (void)leveyPopListViewDidCancel
-{
-    //_infoLabel.text = @"You have cancelled";
-}
-
 
 //BleDelegate functions, called from BleDiscovery class
 - (void) BleDiscoveryDidRefresh

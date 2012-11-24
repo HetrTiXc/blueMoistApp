@@ -34,8 +34,6 @@
 		81F1E05B16569F0F00F49E4E /* saveFile.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81F1E05A16569F0F00F49E4E /* saveFile.plist */; };
 		81F1E05D165A3A6100F49E4E /* roselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F1E05C165A3A6100F49E4E /* roselogo.png */; };
 		81F1E05F165A3BE900F49E4E /* roselogoRet.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F1E05E165A3BE900F49E4E /* roselogoRet.png */; };
-		81F1E069165A576A00F49E4E /* LeveyPopListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F1E066165A576A00F49E4E /* LeveyPopListView.m */; };
-		81F1E06A165A576A00F49E4E /* LeveyPopListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F1E068165A576A00F49E4E /* LeveyPopListViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,10 +73,6 @@
 		81F1E05A16569F0F00F49E4E /* saveFile.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = saveFile.plist; sourceTree = "<group>"; };
 		81F1E05C165A3A6100F49E4E /* roselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roselogo.png; path = ../roselogo.png; sourceTree = "<group>"; };
 		81F1E05E165A3BE900F49E4E /* roselogoRet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = roselogoRet.png; path = ../roselogoRet.png; sourceTree = "<group>"; };
-		81F1E065165A576A00F49E4E /* LeveyPopListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListView.h; sourceTree = "<group>"; };
-		81F1E066165A576A00F49E4E /* LeveyPopListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListView.m; sourceTree = "<group>"; };
-		81F1E067165A576A00F49E4E /* LeveyPopListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyPopListViewCell.h; sourceTree = "<group>"; };
-		81F1E068165A576A00F49E4E /* LeveyPopListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyPopListViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				3F934C8C165FCA54005A39EA /* Ble */,
-				81F1E064165A576900F49E4E /* LeveyPopListView */,
 				81F1E0491651072C00F49E4E /* Resources */,
 				81F1E0481650F78000F49E4E /* Model */,
 				81F1E0471650F74800F49E4E /* GUI */,
@@ -202,18 +195,6 @@
 				81F1E05A16569F0F00F49E4E /* saveFile.plist */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		81F1E064165A576900F49E4E /* LeveyPopListView */ = {
-			isa = PBXGroup;
-			children = (
-				81F1E065165A576A00F49E4E /* LeveyPopListView.h */,
-				81F1E066165A576A00F49E4E /* LeveyPopListView.m */,
-				81F1E067165A576A00F49E4E /* LeveyPopListViewCell.h */,
-				81F1E068165A576A00F49E4E /* LeveyPopListViewCell.m */,
-			);
-			name = LeveyPopListView;
-			path = ../LeveyPopListView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +279,6 @@
 				81F1E03B164D693700F49E4E /* MasterViewController.m in Sources */,
 				81F1E03E164D693700F49E4E /* DetailViewController.m in Sources */,
 				81F1E046164D698C00F49E4E /* flower.m in Sources */,
-				81F1E069165A576A00F49E4E /* LeveyPopListView.m in Sources */,
-				81F1E06A165A576A00F49E4E /* LeveyPopListViewCell.m in Sources */,
 				3F934CA816610B40005A39EA /* BleDiscovery.m in Sources */,
 				3F934CA916610B40005A39EA /* BleFlowerService.m in Sources */,
 			);

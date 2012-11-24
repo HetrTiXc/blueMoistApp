@@ -78,10 +78,9 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8sp-Oq-O8Z">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="GfP-HI-Jyf"/>
-                                    <constraint firstAttribute="width" constant="270" id="bYL-Vz-nAA"/>
+                                    <constraint firstAttribute="height" constant="30" id="rlN-SK-79r"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                 <connections>
                                     <action selector="nameOfFlowerChanged:" destination="21" eventType="editingChanged" id="Hn6-BX-Hzr"/>
@@ -109,12 +108,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="XWB-o1-EsQ" secondAttribute="bottom" constant="33" id="0aX-Ry-9lt"/>
+                            <constraint firstAttribute="trailing" secondItem="8sp-Oq-O8Z" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="2Z1-E5-W6L"/>
                             <constraint firstAttribute="bottom" secondItem="O06-qD-JVH" secondAttribute="bottom" constant="12" id="2yc-Wj-Oiw"/>
                             <constraint firstItem="O06-qD-JVH" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8CL-GO-gPa"/>
                             <constraint firstItem="YJ6-FR-68E" firstAttribute="leading" secondItem="O06-qD-JVH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9Z3-kl-OyV"/>
                             <constraint firstItem="YJ6-FR-68E" firstAttribute="centerY" secondItem="O06-qD-JVH" secondAttribute="centerY" type="user" id="Bma-wc-abh"/>
-                            <constraint firstItem="9Td-wA-paa" firstAttribute="centerX" secondItem="8sp-Oq-O8Z" secondAttribute="centerX" type="default" id="DXi-Iq-3oa"/>
                             <constraint firstAttribute="trailing" secondItem="YJ6-FR-68E" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dh1-Qa-T55"/>
+                            <constraint firstItem="8sp-Oq-O8Z" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="OGz-9W-vQh"/>
                             <constraint firstAttribute="trailing" secondItem="h7c-h6-3Sg" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="OaO-T5-H4r"/>
                             <constraint firstItem="XWB-o1-EsQ" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="S1Z-Mw-OhG"/>
                             <constraint firstItem="8sp-Oq-O8Z" firstAttribute="top" secondItem="22" secondAttribute="top" constant="20" symbolic="YES" type="default" id="S9h-jP-bhg"/>
@@ -126,7 +126,7 @@
                             <constraint firstItem="XWB-o1-EsQ" firstAttribute="centerY" secondItem="h7c-h6-3Sg" secondAttribute="centerY" type="default" id="mbB-xa-Fev"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="26"/>
+                    <navigationItem key="navigationItem" id="26"/>
                     <connections>
                         <outlet property="batteryLevelLabel" destination="O06-qD-JVH" id="ROC-eH-Rfp"/>
                         <outlet property="batteryLevelProgress" destination="YJ6-FR-68E" id="R9g-7c-XMv"/>
@@ -141,27 +141,6 @@
             <point key="canvasLocation" x="902" y="64"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="nameOfFlowerChanged:"/>
-                <relationship kind="outlet" name="batteryLevelLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="batteryLevelProgress" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="detailedDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="flowerNameTextBox" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="imageOfFlowerDetailView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="waterLevelLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="waterLevelProgress" candidateClass="UIProgressView"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
