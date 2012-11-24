@@ -54,8 +54,14 @@
     //NSString *teststreng = [[NSString alloc] initWithFormat:@"TESTSTRENG FTW"];
     //self.labelNumUno.text = teststreng;
     
-    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
-    self.navigationItem.rightBarButtonItem = infoButton;
+    if ([self.detailFlower.flowerService.peripheral isConnected]) {
+        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
+        self.navigationItem.rightBarButtonItem = refreshButton;
+    } else {
+        UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
+        self.navigationItem.rightBarButtonItem = connectButton;
+    }
+    
     self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"%d%%", (int) (self.waterLevelProgress.progress*100)];
     self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
@@ -157,7 +163,7 @@ LeveyPopListView *lplv;
 
 -(void) changeConnectButton
 {
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:nil];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
     [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
 }
 
