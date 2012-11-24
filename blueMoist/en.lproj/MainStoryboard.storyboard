@@ -88,17 +88,13 @@
                                     <outlet property="delegate" destination="21" id="Qla-O4-mFH"/>
                                 </connections>
                             </textField>
-                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h7c-h6-3Sg">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="231" id="UP9-2g-IE3"/>
-                                </constraints>
-                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h7c-h6-3Sg"/>
                             <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="YJ6-FR-68E">
                                 <color key="progressTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWB-o1-EsQ">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="kfD-RX-8Xa"/>
+                                    <constraint firstAttribute="width" constant="67" id="FFz-Ik-38s"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -115,6 +111,7 @@
                             <constraint firstAttribute="bottom" secondItem="XWB-o1-EsQ" secondAttribute="bottom" constant="33" id="0aX-Ry-9lt"/>
                             <constraint firstAttribute="bottom" secondItem="O06-qD-JVH" secondAttribute="bottom" constant="12" id="2yc-Wj-Oiw"/>
                             <constraint firstItem="O06-qD-JVH" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="8CL-GO-gPa"/>
+                            <constraint firstItem="YJ6-FR-68E" firstAttribute="leading" secondItem="O06-qD-JVH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9Z3-kl-OyV"/>
                             <constraint firstItem="YJ6-FR-68E" firstAttribute="centerY" secondItem="O06-qD-JVH" secondAttribute="centerY" type="user" id="Bma-wc-abh"/>
                             <constraint firstItem="9Td-wA-paa" firstAttribute="centerX" secondItem="8sp-Oq-O8Z" secondAttribute="centerX" type="default" id="DXi-Iq-3oa"/>
                             <constraint firstAttribute="trailing" secondItem="YJ6-FR-68E" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dh1-Qa-T55"/>
@@ -123,10 +120,10 @@
                             <constraint firstItem="8sp-Oq-O8Z" firstAttribute="top" secondItem="22" secondAttribute="top" constant="20" symbolic="YES" type="default" id="S9h-jP-bhg"/>
                             <constraint firstItem="9Td-wA-paa" firstAttribute="leading" secondItem="22" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Vgq-wd-jtM"/>
                             <constraint firstAttribute="trailing" secondItem="9Td-wA-paa" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="XSj-sr-zop"/>
+                            <constraint firstItem="h7c-h6-3Sg" firstAttribute="leading" secondItem="XWB-o1-EsQ" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="bNY-08-t50"/>
+                            <constraint firstItem="YJ6-FR-68E" firstAttribute="leading" secondItem="h7c-h6-3Sg" secondAttribute="leading" type="default" id="fsa-zv-IO3"/>
                             <constraint firstItem="9Td-wA-paa" firstAttribute="centerY" secondItem="22" secondAttribute="centerY" type="default" id="k1x-Um-sti"/>
-                            <constraint firstItem="YJ6-FR-68E" firstAttribute="leading" secondItem="h7c-h6-3Sg" secondAttribute="leading" type="default" id="kZH-Vt-GdV"/>
                             <constraint firstItem="XWB-o1-EsQ" firstAttribute="centerY" secondItem="h7c-h6-3Sg" secondAttribute="centerY" type="default" id="mbB-xa-Fev"/>
-                            <constraint firstItem="O06-qD-JVH" firstAttribute="trailing" secondItem="XWB-o1-EsQ" secondAttribute="trailing" type="default" id="riC-YF-jlh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="26"/>
