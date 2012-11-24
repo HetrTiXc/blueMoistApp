@@ -154,6 +154,10 @@ NSString *batteryUUID = @"XXXX";
     hexValueStr = [hexValueStr substringFromIndex:1];
     hexValueStr = [hexValueStr substringToIndex:[hexValueStr length] - 1];
     NSLog(@"%@",hexValueStr);
+    unsigned int *floatValue = NULL;
+    NSScanner *scanner = [NSScanner scannerWithString:hexValueStr];
+    [scanner scanHexInt:floatValue];
+    NSLog(@"%u",floatValue);
     
    }
 
