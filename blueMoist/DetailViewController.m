@@ -62,15 +62,16 @@
         self.navigationItem.rightBarButtonItem = connectButton;
     }
     
-    self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
+    //self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"Humidity"];//@"%d%%", (int) (self.waterLevelProgress.progress*100)];
-    self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
+    //self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
     self.batteryLevelLabel.text = [NSString stringWithFormat:@"Battery"];//@"%d%%", (int) (self.batteryLevelProgress.progress*100)];
     //self.navigationItem.rightBarButtonItem = refreshButton;
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
     
     [self updateBleFlowerServiceCharacteristicValues];
+    [self updateProgressBars];
     
     [self configureView];
 }
@@ -150,6 +151,11 @@
     [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
 }
 
+-(void) updateProgressBars
+{
+    [self.waterLevelProgress setProgress:self.detailFlower.moistureLevel];
+    [self.batteryLevelProgress setProgress:self.detailFlower.batteryLevel];
+}
 
 
 @end
