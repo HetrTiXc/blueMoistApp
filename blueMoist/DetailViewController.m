@@ -18,6 +18,7 @@
 
 //@synthesize _flowerNameTextBox = flowerNameTextBox;
 @synthesize options = _options;
+@synthesize waterLevelProgress;
 
 #pragma mark - Managing the detail item
 
@@ -137,7 +138,6 @@
     NSLog(@"updateBleFlowerServiceCharacteristicValues");
     if([self.detailFlower.flowerService.peripheral isConnected])
     {
-        NSLog(@"Tag: %d",self.waterLevelProgress.tag);
         [self.detailFlower.flowerService updateValue:self.detailFlower.flowerService.batteryCharacteristic];
         [self.detailFlower.flowerService updateValue:self.detailFlower.flowerService.humidityCharacteristic];
     }
