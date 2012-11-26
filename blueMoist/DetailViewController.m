@@ -62,6 +62,8 @@
         self.navigationItem.rightBarButtonItem = connectButton;
     }
     
+    
+    NSLog(@"Level: %f", self.detailFlower.moistureLevel);
     self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"Humidity"];//@"%d%%", (int) (self.waterLevelProgress.progress*100)];
     self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
@@ -69,10 +71,11 @@
     //self.navigationItem.rightBarButtonItem = refreshButton;
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
+    NSLog(@"før update");
     
-    //[self updateBleFlowerServiceCharacteristicValues];
     
     [self configureView];
+    [self updateBleFlowerServiceCharacteristicValues];
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,15 +136,28 @@
     NSLog(@"updateBleFlowerServiceCharacteristicValues");
     if([self.detailFlower.flowerService.peripheral isConnected])
     {
-        [self.detailFlower.flowerService updateValue];
+        NSLog(@"Tag: %d",self.waterLevelProgress.tag);
+        [self.detailFlower.flowerService updateValue:self.detailFlower.flowerService.batteryCharacteristic];
+        [self.detailFlower.flowerService updateValue:self.detailFlower.flowerService.humidityCharacteristic];
     }
 }
 
-- (void) setBleFlowerServiceCharacteristicValue:(float)value
+- (void) setWaterLevel:(float)value
 {
-    NSLog(@"setBleFlowerServiceCharacteristicValue");
-    NSLog(@"%f", value);
+    
+    NSLog(@"setWaterLevel");
+    self.detailFlower.moistureLevel = value;
     self.waterLevelProgress.progress = value;
+    NSLog(@"Progress: %f",self.waterLevelProgress.progress);
+}
+
+- (void) setBatteryLevel:(float)value
+{
+    NSLog(@"setBatteryLevel");
+    NSLog(@"Tag battery: %d",self.waterLevelProgress.tag);
+    self.detailFlower.batteryLevel = value;
+    self.batteryLevelProgress.progress = value;
+    NSLog(@"Progress: %f",self.batteryLevelProgress.progress);
 }
 
 -(void) changeConnectButton

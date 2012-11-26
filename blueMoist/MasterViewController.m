@@ -56,7 +56,7 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addTapped:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    self.title = @"Vanne Blomstr";
+    self.title = @"Flowers";
     
 }
 
@@ -130,12 +130,14 @@
 }
 */
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
+        NSLog(@"prepareForSegue");
         DetailViewController *detailController = segue.destinationViewController;
         flower *oneFlowerToShow = [self.flowerList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         detailController.detailFlower = oneFlowerToShow;

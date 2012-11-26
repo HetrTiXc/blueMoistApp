@@ -10,7 +10,8 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 
 @protocol BleServiceDelegate <NSObject>
-- (void) setBleFlowerServiceCharacteristicValue:(float)value;
+- (void) setWaterLevel:(float)value;
+- (void) setBatteryLevel:(float)value;
 @end
 
 
@@ -21,9 +22,11 @@ extern NSString *batteryUUID;
 
 - (id) initWithPeripheral:(CBPeripheral *)peripheral;
 - (void) start;
-- (void) updateValue;
+- (void) updateValue:(CBCharacteristic *) characteristic;
 
 @property (readonly) CBPeripheral *peripheral;
-@property (nonatomic, assign) id <BleServiceDelegate> BleServiceDelegate;
+@property (nonatomic, retain) id <BleServiceDelegate> BleServiceDelegate;
+@property (readonly)  CBCharacteristic    *humidityCharacteristic;
+@property (readonly)  CBCharacteristic    *batteryCharacteristic;
 
 @end

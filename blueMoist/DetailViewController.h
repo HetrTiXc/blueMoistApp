@@ -18,14 +18,14 @@
 @property (strong, nonatomic) id detailItem;
 @property (strong, nonatomic) flower *detailFlower;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageOfFlowerDetailView;
-@property (weak, nonatomic) IBOutlet UILabel *detailedDescriptionLabel;
+@property (retain, nonatomic) IBOutlet UIImageView *imageOfFlowerDetailView;
+@property (retain, nonatomic) IBOutlet UILabel *detailedDescriptionLabel;
 
-@property (weak, nonatomic) IBOutlet UITextField *flowerNameTextBox;
-@property (weak, nonatomic) IBOutlet UIProgressView *waterLevelProgress;
-@property (weak, nonatomic) IBOutlet UIProgressView *batteryLevelProgress;
-@property (weak, nonatomic) IBOutlet UILabel *waterLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *batteryLevelLabel;
+@property (retain, nonatomic) IBOutlet UITextField *flowerNameTextBox;
+@property (retain, nonatomic) IBOutlet UIProgressView *waterLevelProgress;
+@property (retain, nonatomic) IBOutlet UIProgressView *batteryLevelProgress;
+@property (retain, nonatomic) IBOutlet UILabel *waterLevelLabel;
+@property (retain, nonatomic) IBOutlet UILabel *batteryLevelLabel;
 
 @property (strong, nonatomic) NSArray *options;
 

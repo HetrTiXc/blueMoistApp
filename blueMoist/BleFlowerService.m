@@ -10,14 +10,17 @@
 #import "BleDiscovery.h"
 
 NSString *humidityUUID = @"2012";
-NSString *humidityCharacteristicUUID = @"2a19";
 NSString *batteryUUID = @"180f";
+NSString *humidityCharacteristicUUID = @"2a19";
+
 
 @interface BleFlowerService() <CBPeripheralDelegate> {
 @private
     CBPeripheral		*servicePeripheral;
     CBService			*humidityService;
+    CBService			*batteryService;
     CBCharacteristic    *humidityCharacteristic;
+    CBCharacteristic    *batteryCharacteristic;
     
 }
 @end
@@ -26,6 +29,8 @@ NSString *batteryUUID = @"180f";
 
 @implementation BleFlowerService
 
+@synthesize humidityCharacteristic = humidityCharacteristic;
+@synthesize batteryCharacteristic = batteryCharacteristic;
 @synthesize peripheral = servicePeripheral;
 @synthesize BleServiceDelegate;
 
@@ -48,8 +53,9 @@ NSString *batteryUUID = @"180f";
 
 - (void) start
 {
-	CBUUID	*serviceUUID	= [CBUUID UUIDWithString:humidityUUID];
-	NSArray	*serviceArray	= [NSArray arrayWithObjects:serviceUUID, nil];
+	CBUUID	*humidityServiceUUID	= [CBUUID UUIDWithString:humidityUUID];
+    CBUUID  *batteryServiceUUID    = [CBUUID UUIDWithString:batteryUUID];
+	NSArray	*serviceArray	= [NSArray arrayWithObjects:humidityServiceUUID,batteryServiceUUID, nil];
     NSLog(@"-->start");
     [servicePeripheral discoverServices:serviceArray];
 }
@@ -60,7 +66,6 @@ NSString *batteryUUID = @"180f";
 {
 	NSLog(@"didDiscoverServices");
     NSArray		*services	= nil;
-	NSArray		*uuids	= [NSArray arrayWithObjects:humidityUUID, nil];
     
 	if (peripheral != servicePeripheral) {
 		NSLog(@"Wrong Peripheral.\n");
@@ -80,14 +85,22 @@ NSString *batteryUUID = @"180f";
 	humidityService = nil;
     
 	for (CBService *service in services) {
+        NSLog(@"%@", service.UUID);
 		if ([[service UUID] isEqual:[CBUUID UUIDWithString:humidityUUID]]) {
 			humidityService = service;
-			break;
+			//break;
+		}
+        if ([[service UUID] isEqual:[CBUUID UUIDWithString:batteryUUID]]) {
+			batteryService = service;
+			//break;
 		}
 	}
     
 	if (humidityService) {
 		[peripheral discoverCharacteristics:nil forService:humidityService];
+	}
+    if (batteryService) {
+		[peripheral discoverCharacteristics:nil forService:batteryService];
 	}
 }
 
@@ -103,30 +116,37 @@ NSString *batteryUUID = @"180f";
 		return ;
 	}
 	
-	if (service != humidityService) {
-		NSLog(@"Wrong Service.\n");
-		return ;
+	if (service == humidityService) {
+		for (characteristic in characteristics) {
+             NSLog(@"service: %@", [service UUID]);
+            NSLog(@"characteristic: %@", [characteristic UUID]);
+            humidityCharacteristic = characteristic;
+        }
+        [self updateValue:humidityCharacteristic];
+	}
+    
+    if (service == batteryService) {
+		for (characteristic in characteristics) {
+            NSLog(@"service: %@", [service UUID]);
+            NSLog(@"characteristic: %@", [characteristic UUID]);
+            batteryCharacteristic = characteristic;
+        }
+        [self updateValue:batteryCharacteristic];
 	}
     
     if (error != nil) {
 		NSLog(@"Error %@\n", error);
 		return ;
 	}
+
     
-	for (characteristic in characteristics) {
-        NSLog(@"characteristic: %@", [characteristic UUID]);
-        humidityCharacteristic = characteristic;
-        
-         
-    }
     
-    [self updateValue];
 }
 
 - (void) peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
 {
     NSLog(@"didUpdateValueForCharacteristic");
-    NSLog(@"value: %@",characteristic.value);
+    
     
 	if (peripheral != servicePeripheral) {
 		NSLog(@"Wrong peripheral\n");
@@ -138,31 +158,56 @@ NSString *batteryUUID = @"180f";
 		return ;
 	}
     
-    [self convertValueFromHexToFloat:characteristic.value];
+    if ([[characteristic service] isEqual:humidityService]) {
+        NSLog(@"humidity");
+        NSLog(@"value: %@",characteristic.value);
+        [self convertValueFromHexToFloat:characteristic];
+        return;
+    }
+    
+    if ([[characteristic service] isEqual:batteryService]) {
+        NSLog(@"battery");
+        NSLog(@"value: %@",characteristic.value);
+        [self convertValueFromHexToFloat:characteristic];
+        return;
+    }
+
+    
+    
+
 }
 
-- (void) updateValue
+- (void) updateValue:(CBCharacteristic *)characteristic
 {
     NSLog(@"-->updateValue");
-    [servicePeripheral readValueForCharacteristic:humidityCharacteristic];
+    [servicePeripheral readValueForCharacteristic:characteristic];
 }
 
-- (void) convertValueFromHexToFloat:(NSData*) hexValue
+- (void) convertValueFromHexToFloat:(CBCharacteristic *) characteristic
 {
+    NSData *hexValue = characteristic.value;
     NSLog(@"convertValueFromHexToFloat");
     NSString *hexValueStr = hexValue.description;
     hexValueStr = [hexValueStr substringFromIndex:1];
     hexValueStr = [hexValueStr substringToIndex:[hexValueStr length] - 1];
-    NSLog(@"%@",hexValueStr);
     unsigned int value;
     NSScanner *scanner = [NSScanner scannerWithString:hexValueStr];
     [scanner scanHexInt:&value];
-    NSLog(@"%u",value);
     float flValue = (float) value;
+    NSLog(@"Float value: %f",flValue);
     
-    flValue = flValue/120;
-    NSLog(@"%f",flValue);
-    [BleServiceDelegate setBleFlowerServiceCharacteristicValue:flValue];
+    if ([[characteristic service] isEqual:humidityService]) {
+        flValue = flValue/120;
+        [BleServiceDelegate setWaterLevel:flValue];
+        return;
+    }
+    
+    if ([[characteristic service] isEqual:batteryService]) {
+        flValue = flValue/100;
+        [BleServiceDelegate setBatteryLevel:flValue];
+    }
+    
+    
 }
 
 @end
