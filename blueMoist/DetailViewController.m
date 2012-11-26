@@ -92,6 +92,7 @@
     self.detailFlower.name = self.flowerNameTextBox.text;
 }
 - (void) infoTapped:(id) sender{
+    NSLog(@"Connect Button pushed");
     [[BleDiscovery sharedInstance] startScanningForUUIDString:humidityUUID];
     
 }
@@ -130,6 +131,7 @@
 //Requests update for characteristic values from the peripheral connected to the flower, called after the connection is set up, on each load of detailedView, and from "update" button
 - (void) updateBleFlowerServiceCharacteristicValues
 {
+    NSLog(@"Update Button Pushed");
     if([self.detailFlower.flowerService.peripheral isConnected])
     {
         [self.detailFlower.flowerService updateValue];
