@@ -29,15 +29,23 @@
 {
     
     [super viewDidLoad];
+
+    NSString *applicationDocumentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [applicationDocumentsPath stringByAppendingPathComponent:@"test.plist"];
     
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    if (!array) {
+        // if it couldn't be loaded from disk create a new one
+        [_flowerList addObjectsFromArray:array];
+    }
     
     //Load last used list over flowers
-    NSString *savePath = [self saveFilePath];
+    /*NSString *savePath = [self saveFilePath];
 	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savePath];
 	if (fileExists)
 	{
-		//NSArray *values = [[NSArray alloc] initWithContentsOfFile:savePath];
-        //_flowerList = [values copy];
+		NSArray *values = [[NSArray alloc] initWithContentsOfFile:savePath];
+        _flowerList = [values copy];
 		//Question.text = [values objectAtIndex:0];
 		//Answer.text = [values objectAtIndex:1];
 	}
@@ -48,7 +56,7 @@
                                              selector:@selector(applicationDidEnterBackground:)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:flowerApp];
-    
+    */
     
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -164,7 +172,19 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	NSArray *values = [[NSArray alloc] initWithArray:_flowerList];
-	[values writeToFile:[self saveFilePath] atomically:YES];
+    NSLog(@"appDidEnterBackground");
+    // save the file
+    NSString *applicationDocumentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *path = [applicationDocumentsPath stringByAppendingPathComponent:@"test.plist"];
+    
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    BOOL result = [NSKeyedArchiver archiveRootObject:array toFile:path];
+    
+
+	//NSArray *values = [[NSArray alloc] initWithArray:_flowerList];
+	//[values writeToFile:[self saveFilePath] atomically:YES];
+    //[buttonState writeToFile:filePath atomically: YES];
 }
+
 @end
