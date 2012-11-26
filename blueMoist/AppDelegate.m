@@ -26,7 +26,6 @@
     sunflower = [sunflower initWithName:@"Sunflower" thumbImage:[UIImage imageNamed:@"sunflowerThumbImage"] fullImage: [UIImage imageNamed:@"sunflowerImage"]];
     sunflower.userDescription = @"jflsjdflsdflkjsdfkj";
     
-    
     NSMutableArray *flowersToAddToList = [NSMutableArray arrayWithObjects:rose, tulip, sunflower, nil];
     
     UINavigationController *navController = (UINavigationController *) self.window.rootViewController;
