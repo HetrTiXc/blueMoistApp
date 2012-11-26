@@ -95,6 +95,7 @@
     self.detailFlower.name = self.flowerNameTextBox.text;
 }
 - (void) infoTapped:(id) sender{
+    NSLog(@"Connect Button pushed");
     [[BleDiscovery sharedInstance] startScanningForUUIDString:humidityUUID];
     
 }
