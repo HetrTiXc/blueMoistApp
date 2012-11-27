@@ -54,10 +54,7 @@
     //NSString *teststreng = [[NSString alloc] initWithFormat:@"TESTSTRENG FTW"];
     //self.labelNumUno.text = teststreng;
     
-    if ([self.detailFlower.flowerService.peripheral isConnected]) {
-        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
-        self.navigationItem.rightBarButtonItem = refreshButton;
-    } else {
+    if (![self.detailFlower.flowerService.peripheral isConnected]) {
         UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
         self.navigationItem.rightBarButtonItem = connectButton;
     }
@@ -69,6 +66,12 @@
     //self.navigationItem.rightBarButtonItem = refreshButton;
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
+    //Start timer which will update the progress bars
+    [NSTimer scheduledTimerWithTimeInterval:1
+                                     target:self
+                                   selector:@selector(updateProgressBars)
+                                   userInfo:nil
+                                    repeats:YES];
     
     [self updateBleFlowerServiceCharacteristicValues];
     [self updateProgressBars];
@@ -147,8 +150,7 @@
 
 -(void) changeConnectButton
 {
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
-    [self.navigationItem setRightBarButtonItem:refreshButton animated:YES];
+    [self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
 
 -(void) updateProgressBars
