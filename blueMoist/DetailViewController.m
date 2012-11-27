@@ -59,6 +59,10 @@
         self.navigationItem.rightBarButtonItem = connectButton;
     }
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(handleBack:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    
     //self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"Humidity"];//@"%d%%", (int) (self.waterLevelProgress.progress*100)];
     //self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
@@ -67,7 +71,8 @@
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
     //Start timer which will update the progress bars
-    [NSTimer scheduledTimerWithTimeInterval:1
+    //Create timer
+    self.detailFlower.updateTimerForSensorValues = [NSTimer scheduledTimerWithTimeInterval:1
                                      target:self
                                    selector:@selector(updateProgressBars)
                                    userInfo:nil
@@ -157,6 +162,12 @@
 {
     [self.waterLevelProgress setProgress:self.detailFlower.moistureLevel];
     [self.batteryLevelProgress setProgress:self.detailFlower.batteryLevel];
+}
+
+- (void) handleBack:(id)sender
+{
+    [self.detailFlower.updateTimerForSensorValues invalidate];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
