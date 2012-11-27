@@ -20,6 +20,8 @@
 
 @synthesize flowerList = _flowerList;
 
+
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -146,9 +148,9 @@
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
         NSLog(@"prepareForSegue");
-        DetailViewController *detailController = segue.destinationViewController;
+        _detailController = segue.destinationViewController;
         flower *oneFlowerToShow = [self.flowerList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        detailController.detailFlower = oneFlowerToShow;
+        _detailController.detailFlower = oneFlowerToShow;
     }
 }
 

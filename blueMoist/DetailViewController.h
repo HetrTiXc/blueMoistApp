@@ -21,13 +21,16 @@
 @property (retain, nonatomic) IBOutlet UIImageView *imageOfFlowerDetailView;
 @property (retain, nonatomic) IBOutlet UILabel *detailedDescriptionLabel;
 
-@property (retain, nonatomic) IBOutlet UITextField *flowerNameTextBox;
-@property (retain, nonatomic) IBOutlet UIProgressView *waterLevelProgress;
-@property (retain, nonatomic) IBOutlet UIProgressView *batteryLevelProgress;
-@property (retain, nonatomic) IBOutlet UILabel *waterLevelLabel;
-@property (retain, nonatomic) IBOutlet UILabel *batteryLevelLabel;
+@property ( nonatomic) IBOutlet UITextField *flowerNameTextBox;
+@property ( nonatomic) IBOutlet UIProgressView *waterLevelProgress;
+@property ( nonatomic) IBOutlet UIProgressView *batteryLevelProgress;
+@property ( nonatomic) IBOutlet UILabel *waterLevelLabel;
+@property (nonatomic) IBOutlet UILabel *batteryLevelLabel;
 
 @property (strong, nonatomic) NSArray *options;
+
+@property (weak, nonatomic) IBOutlet UIButton *dummybutton;
+- (IBAction)dummyButtonFunc:(id)sender;
 
 - (IBAction)nameOfFlowerChanged:(id)sender;
 

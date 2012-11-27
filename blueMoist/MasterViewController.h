@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
 
 @interface MasterViewController : UITableViewController
 
 @property (strong) NSMutableArray *flowerList;
+@property DetailViewController *detailController;
 
 - (NSString *) saveFilePath;
 - (void)applicationDidEnterBackground:(UIApplication *)application;
-
 
 @end

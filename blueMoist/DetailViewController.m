@@ -18,7 +18,7 @@
 
 //@synthesize _flowerNameTextBox = flowerNameTextBox;
 @synthesize options = _options;
-@synthesize waterLevelProgress;
+@synthesize waterLevelProgress = _waterLevelProgress;
 
 #pragma mark - Managing the detail item
 
@@ -58,25 +58,25 @@
     if ([self.detailFlower.flowerService.peripheral isConnected]) {
         UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateBleFlowerServiceCharacteristicValues)];
         self.navigationItem.rightBarButtonItem = refreshButton;
+        
+        
     } else {
         UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStylePlain target:self action:@selector(infoTapped:)];
         self.navigationItem.rightBarButtonItem = connectButton;
     }
-    
-    
-    NSLog(@"Level: %f", self.detailFlower.moistureLevel);
-    self.waterLevelProgress.progress = self.detailFlower.moistureLevel;
+    NSLog(@"%f", self.waterLevelProgress.progress);
+    //self.waterLevelProgress.progress = 0.0;
     self.waterLevelLabel.text = [NSString stringWithFormat:@"Humidity"];//@"%d%%", (int) (self.waterLevelProgress.progress*100)];
-    //self.batteryLevelProgress.progress = self.detailFlower.batteryLevel;
+    self.batteryLevelProgress.progress = 0.0;
     self.batteryLevelLabel.text = [NSString stringWithFormat:@"Battery"];//@"%d%%", (int) (self.batteryLevelProgress.progress*100)];
     //self.navigationItem.rightBarButtonItem = refreshButton;
    // _options = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:@"dummy",@"text", nil],nil];
     
-    NSLog(@"før update");
     
+    [self updateBleFlowerServiceCharacteristicValues];
+    [self updateProgressBars];
     
     [self configureView];
-    [self updateBleFlowerServiceCharacteristicValues];
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,6 +90,10 @@
         [inputTextBox resignFirstResponder];
     }
     return YES;
+}
+
+- (IBAction)dummyButtonFunc:(id)sender {
+    self.waterLevelProgress.progress = 0.7;
 }
 
 - (IBAction)nameOfFlowerChanged:(id)sender {
@@ -150,15 +154,18 @@
     self.detailFlower.moistureLevel = value;
     self.waterLevelProgress.progress = value;
     NSLog(@"Progress: %f",self.waterLevelProgress.progress);
+    self.waterLevelLabel.text = [NSString stringWithFormat:@"Møkkabar"];
+    self.flowerNameTextBox.text = [NSString stringWithFormat:@"Ny tittel"];
+
 }
 
 - (void) setBatteryLevel:(float)value
 {
     NSLog(@"setBatteryLevel");
-    NSLog(@"Tag battery: %d",self.waterLevelProgress.tag);
     self.detailFlower.batteryLevel = value;
     self.batteryLevelProgress.progress = value;
     NSLog(@"Progress: %f",self.batteryLevelProgress.progress);
+    self.batteryLevelLabel.text = [NSString stringWithFormat:@"Drittbar"];
 }
 
 -(void) changeConnectButton
@@ -169,8 +176,8 @@
 
 -(void) updateProgressBars
 {
-    [self.waterLevelProgress setProgress:self.detailFlower.moistureLevel];
-    [self.batteryLevelProgress setProgress:self.detailFlower.batteryLevel];
+    [self.waterLevelProgress setProgress:self.detailFlower.moistureLevel ];
+    [self.batteryLevelProgress setProgress:self.detailFlower.batteryLevel ];
 }
 
 
