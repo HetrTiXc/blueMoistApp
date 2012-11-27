@@ -153,5 +153,11 @@
     [self.batteryLevelProgress setProgress:self.detailFlower.batteryLevel ];
 }
 
+- (void) handleBack:(id)sender
+{
+    [self.detailFlower.updateTimerForSensorValues invalidate];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 @end

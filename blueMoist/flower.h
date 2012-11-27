@@ -18,6 +18,7 @@
 @property (strong) NSString *appDescription;
 @property (assign) float moistureLevel;
 @property (assign) float batteryLevel;
+@property NSTimer *updateTimerForSensorValues;
 @property (retain) BleFlowerService *flowerService;
 
 - (id) initWithName:(NSString *) name thumbImage:(UIImage *) thumbImage fullImage:(UIImage *) fullImage;
