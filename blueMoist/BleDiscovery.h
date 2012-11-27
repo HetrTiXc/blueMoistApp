@@ -11,7 +11,6 @@
 #import "BleFlowerService.h"
 
 @protocol BleDelegate <NSObject>
-- (void) BleDiscoveryDidRefresh;
 - (void) foundPeripheral:(CBPeripheral *)peripheral;
 - (void) startBleFlowerService;
 - (void) changeConnectButton;

@@ -27,10 +27,6 @@
 @property ( nonatomic) IBOutlet UILabel *waterLevelLabel;
 @property (nonatomic) IBOutlet UILabel *batteryLevelLabel;
 
-@property (strong, nonatomic) NSArray *options;
-
-@property (weak, nonatomic) IBOutlet UIButton *dummybutton;
-- (IBAction)dummyButtonFunc:(id)sender;
 
 - (IBAction)nameOfFlowerChanged:(id)sender;
 

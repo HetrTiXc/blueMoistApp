@@ -9,9 +9,9 @@
 #import "BleFlowerService.h"
 #import "BleDiscovery.h"
 
+//Service UUIDs
 NSString *humidityUUID = @"2012";
 NSString *batteryUUID = @"180f";
-NSString *humidityCharacteristicUUID = @"2a19";
 
 
 @interface BleFlowerService() <CBPeripheralDelegate> {
@@ -26,7 +26,6 @@ NSString *humidityCharacteristicUUID = @"2a19";
 @end
 
 
-
 @implementation BleFlowerService
 
 @synthesize humidityCharacteristic = humidityCharacteristic;
@@ -34,7 +33,7 @@ NSString *humidityCharacteristicUUID = @"2a19";
 @synthesize peripheral = servicePeripheral;
 @synthesize BleServiceDelegate;
 
-//#####################################################################################################
+//Initializes the BleFlowerService
 
 - (id) initWithPeripheral:(CBPeripheral *)peripheral
 {
@@ -49,7 +48,7 @@ NSString *humidityCharacteristicUUID = @"2a19";
 }
 
 
-//#####################################################################################################
+//Starts the BleFlowerService
 
 - (void) start
 {
@@ -60,7 +59,7 @@ NSString *humidityCharacteristicUUID = @"2a19";
     [servicePeripheral discoverServices:serviceArray];
 }
 
-//#####################################################################################################
+//Callback for: discoverServices
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
@@ -104,7 +103,7 @@ NSString *humidityCharacteristicUUID = @"2a19";
 	}
 }
 
-//#####################################################################################################
+//Callback for: discoverCharacteristics
 
 - (void) peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error;
 {

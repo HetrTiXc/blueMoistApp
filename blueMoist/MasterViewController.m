@@ -41,25 +41,7 @@
         [_flowerList addObjectsFromArray:array];
     }
     
-    //Load last used list over flowers
-    /*NSString *savePath = [self saveFilePath];
-	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:savePath];
-	if (fileExists)
-	{
-		NSArray *values = [[NSArray alloc] initWithContentsOfFile:savePath];
-        _flowerList = [values copy];
-		//Question.text = [values objectAtIndex:0];
-		//Answer.text = [values objectAtIndex:1];
-	}
-    
-    //Call save-on-quit function
-    UIApplication *flowerApp = [UIApplication sharedApplication];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidEnterBackground:)
-                                                 name:UIApplicationDidEnterBackgroundNotification
-                                               object:flowerApp];
-    */
-    
+        
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
@@ -124,22 +106,6 @@
     }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -186,9 +152,6 @@
     BOOL result = [NSKeyedArchiver archiveRootObject:array toFile:path];
     
 
-	//NSArray *values = [[NSArray alloc] initWithArray:_flowerList];
-	//[values writeToFile:[self saveFilePath] atomically:YES];
-    //[buttonState writeToFile:filePath atomically: YES];
 }
 
 @end

@@ -74,7 +74,6 @@
 
 }
 
-//#####################################################################################################
 
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
@@ -86,7 +85,6 @@
 	[centralManager scanForPeripheralsWithServices:uuidArray options:options];
 }
 
-//#####################################################################################################
 
 - (void) stopScanning
 {
@@ -95,7 +93,6 @@
 	[centralManager stopScan];
 }
 
-//#####################################################################################################
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral
 {
@@ -106,7 +103,6 @@
 	}
 }
 
-//#####################################################################################################
 
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral
 {
@@ -115,9 +111,8 @@
 	[centralManager cancelPeripheralConnection:peripheral];
 }
 
-//#####################################################################################################
 
-
+//Callback for: scanForPeripheralsWithServices
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"didDiscoverPeripheral");
@@ -130,7 +125,7 @@
     }
 }
 
-//#####################################################################################################
+//Callback for: connectPeripheral
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
@@ -140,32 +135,29 @@
     [BleDelegate changeConnectButton];
 }
 
-//#####################################################################################################
+//callback for: connectPeripheral 
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"didFailToConnectPeripheral");
     
 }
-//#####################################################################################################
 
 
+//State of the CBCentralManager --> the BLE controller
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central
 {
     static CBCentralManagerState previousState = -1;
     
 	switch ([centralManager state]) {
 		case CBCentralManagerStatePoweredOff:
-		{
-            
-
+		{            
             NSLog(@"StatePoweredOff");
 			break;
 		}
             
         case CBCentralManagerStateUnsupported:
 		{
-            
             NSLog(@"StateUnsupported");
 			break;
 		}
@@ -173,31 +165,24 @@
 		case CBCentralManagerStateUnauthorized:
 		{
             NSLog(@"StateUnauthorized");
-			/* Tell user the app is not allowed. */
 			break;
 		}
             
 		case CBCentralManagerStateUnknown:
 		{
-            NSLog(@"StateUnknown");
-			/* Bad news, let's wait for another event. */
-            
+            NSLog(@"StateUnknown");            
 			break;
 		}
             
 		case CBCentralManagerStatePoweredOn:
 		{
             NSLog(@"StatePoweredOn");
-
-			//[centralManager retrieveConnectedPeripherals];
-
 			break;
 		}
             
 		case CBCentralManagerStateResetting:
 		{
             NSLog(@"StateResettin");
-
 			break;
 		}
 	}
