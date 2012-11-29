@@ -2,8 +2,8 @@
 //  BleFlowerService.h
 //  BlueFlower
 //
-//  Created by student on 11/16/12.
-//  Copyright (c) 2012 student. All rights reserved.
+//  Created by Tobias on 11/16/12.
+//  Copyright (c) 2012 Tobias. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -22,11 +22,12 @@ extern NSString *batteryUUID;
 
 - (id) initWithPeripheral:(CBPeripheral *)peripheral;
 - (void) start;
-- (void) updateValue:(CBCharacteristic *) characteristic;
+- (void) updateValue:(CBCharacteristic *)characteristic;
 
 @property (readonly) CBPeripheral *peripheral;
+@property (readonly) CBCharacteristic *humidityCharacteristic;
+@property (readonly) CBCharacteristic *batteryCharacteristic;
 @property (nonatomic, retain) id <BleServiceDelegate> BleServiceDelegate;
-@property (readonly)  CBCharacteristic    *humidityCharacteristic;
-@property (readonly)  CBCharacteristic    *batteryCharacteristic;
+
 
 @end

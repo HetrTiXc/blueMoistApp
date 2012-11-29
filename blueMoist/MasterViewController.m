@@ -113,7 +113,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
-        NSLog(@"prepareForSegue");
         _detailController = segue.destinationViewController;
         flower *oneFlowerToShow = [self.flowerList objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         _detailController.detailFlower = oneFlowerToShow;
@@ -121,7 +120,7 @@
 }
 
 - (void) addTapped:(id)sender {
-    flower *newFlower = [[flower alloc] initWithName:@"New Plant" thumbImage:[UIImage imageNamed:@"dummyflowerThumb"] fullImage:[UIImage imageNamed:@"dummyFlower"]];
+    flower *newFlower = [[flower alloc] initWithName:@"New Plant" thumbImage:[UIImage imageNamed:@"dummyFlowerThumb"] fullImage:[UIImage imageNamed:@"dummyFlower"]];
     [_flowerList addObject:newFlower];
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_flowerList.count-1 inSection:0];
@@ -147,8 +146,7 @@
     NSString *applicationDocumentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *path = [applicationDocumentsPath stringByAppendingPathComponent:@"test.plist"];
     
-    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-    
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:path];    
     BOOL result = [NSKeyedArchiver archiveRootObject:array toFile:path];
     
 

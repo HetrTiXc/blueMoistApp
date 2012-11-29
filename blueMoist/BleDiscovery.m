@@ -2,8 +2,8 @@
 //  BleDiscovery.m
 //  BlueFlower
 //
-//  Created by student on 11/3/12.
-//  Copyright (c) 2012 student. All rights reserved.
+//  Created by Tobias on 11/3/12.
+//  Copyright (c) 2012 Tobias. All rights reserved.
 //
 
 #import "BleDiscovery.h"
@@ -15,9 +15,6 @@
 
 @implementation BleDiscovery
 
-
-@synthesize connectedServices;
-@synthesize freePeripheralName;
 @synthesize BleDelegate;
 
 + (id) sharedInstance
@@ -30,55 +27,21 @@
 	return this;
 }
 
-//#####################################################################################################
 
 - (id) init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
 		centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
-        connectedServices = [[NSMutableArray alloc] init];
-        freePeripheralName = [[NSMutableArray alloc] init];
 	}
     return self;
-}
-
-//#####################################################################################################
-
-- (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals
-{
-    NSLog(@"didRetrieveConnectedPeripherals");
-    
-	CBPeripheral	*peripheral;
-	for (peripheral in peripherals) {
-		[central connectPeripheral:peripheral options:nil];
-	}
-	
-}
-
-//#####################################################################################################
-
-- (void) centralManager:(CBCentralManager *)central didRetrievePeripheral:(CBPeripheral *)peripheral
-{
-    NSLog(@"didRetrievePeripheral");
-    
-	[central connectPeripheral:peripheral options:nil];
-
-}
-
-//#####################################################################################################
-
-- (void) centralManager:(CBCentralManager *)central didFailToRetrievePeripheralForUUID:(CFUUIDRef)UUID error:(NSError *)error
-{
-    NSLog(@"didFailToRetrievePeripheralForUUID");
-
 }
 
 
 - (void) startScanningForUUIDString:(NSString *)uuidString
 {
-    NSLog(@"startScanningForUUIDString");
-    
+    NSLog(@"startScanningForUUIDString");    
 	NSArray			*uuidArray	= [NSArray arrayWithObjects:[CBUUID UUIDWithString:uuidString], nil];
 	NSDictionary	*options	= [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
     
@@ -88,17 +51,16 @@
 
 - (void) stopScanning
 {
-    NSLog(@"stopScanning");
-    
+    NSLog(@"stopScanning");    
 	[centralManager stopScan];
 }
 
 
 - (void) connectPeripheral:(CBPeripheral*)peripheral
 {
-    NSLog(@"connectPeripheral");
-    
-	if (![peripheral isConnected]) {
+    NSLog(@"connectPeripheral");    
+	if (![peripheral isConnected])
+    {
 		[centralManager connectPeripheral:peripheral options:nil];
 	}
 }
@@ -106,50 +68,42 @@
 
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral
 {
-    NSLog(@"disconnectPeripheral");
-    
+    NSLog(@"disconnectPeripheral");    
 	[centralManager cancelPeripheralConnection:peripheral];
 }
 
 
-//Callback for: scanForPeripheralsWithServices
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"didDiscoverPeripheral");
-   
-    //The stopScan is done for the CSR dongle to work, may not be needed for iphone
     if(![peripheral isConnected])
     {
-        [centralManager stopScan];
+        [centralManager stopScan];//The stopScan is done for the CSR dongle to work with iPhone simulator, may not be needed for real iPhone
         [BleDelegate foundPeripheral:peripheral];
     }
 }
 
-//Callback for: connectPeripheral
 
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
     NSLog(@"didConnectPeripheral");
-    
     [BleDelegate startBleFlowerService];
     [BleDelegate changeConnectButton];
 }
 
-//callback for: connectPeripheral 
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"didFailToConnectPeripheral");
-    
 }
 
 
-//State of the CBCentralManager --> the BLE controller
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central
 {
     static CBCentralManagerState previousState = -1;
     
-	switch ([centralManager state]) {
+	switch ([centralManager state])
+    {
 		case CBCentralManagerStatePoweredOff:
 		{            
             NSLog(@"StatePoweredOff");

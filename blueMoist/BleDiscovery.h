@@ -2,8 +2,8 @@
 //  BleDiscovery.h
 //  BlueFlower
 //
-//  Created by student on 11/3/12.
-//  Copyright (c) 2012 student. All rights reserved.
+//  Created by Tobias on 11/3/12.
+//  Copyright (c) 2012 Tobias. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -24,10 +24,6 @@
 - (void) connectPeripheral:(CBPeripheral*)peripheral;
 - (void) disconnectPeripheral:(CBPeripheral*)peripheral;
 
-
-@property (retain, nonatomic) NSMutableArray	*connectedServices;
-@property (retain, nonatomic) NSMutableArray    *freePeripheralName;
-
-@property (nonatomic, assign) id <BleDelegate> BleDelegate;
+@property (nonatomic, retain) id <BleDelegate>  BleDelegate;
 
 @end

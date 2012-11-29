@@ -20,7 +20,6 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *imageOfFlowerDetailView;
 @property (retain, nonatomic) IBOutlet UILabel *detailedDescriptionLabel;
-
 @property ( nonatomic) IBOutlet UITextField *flowerNameTextBox;
 @property ( nonatomic) IBOutlet UIProgressView *waterLevelProgress;
 @property ( nonatomic) IBOutlet UIProgressView *batteryLevelProgress;
